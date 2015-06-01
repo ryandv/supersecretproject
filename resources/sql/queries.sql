@@ -1,16 +1,20 @@
---name: create-user!
--- creates a new user record
-INSERT INTO users
-(id, first_name, last_name, email, pass)
-VALUES (:id, :first_name, :last_name, :email, :pass)
+--name: create-listing!
+-- creates a new listing record
+INSERT INTO listings
+(author, title, sku, price)
+VALUES (:author, :title, :sku, :price)
 
---name: update-user!
--- update an existing user record
-UPDATE users
-SET first_name = :first_name, last_name = :last_name, email = :email
+--name: update-listing!
+-- update an existing listing record
+UPDATE listings
+SET author = :author, title = :title, sku = :sku, price = :price
 WHERE id = :id
 
--- name: get-user
+-- name: get-listing
 -- retrieve a used given the id.
-SELECT * FROM users
+SELECT * FROM listings
 WHERE id = :id
+
+-- name: get-all-listings
+-- retrieve a used given the id.
+SELECT * FROM listings

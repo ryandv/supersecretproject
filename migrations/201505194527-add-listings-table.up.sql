@@ -1,0 +1,6 @@
+CREATE TABLE listings
+(id VARCHAR(20) PRIMARY KEY AUTO_INCREMENT,
+ author VARCHAR(30),
+ title VARCHAR(30),
+ sku VARCHAR(30),
+ price INTEGER);

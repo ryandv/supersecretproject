@@ -1,14 +1,70 @@
 {% extends "base.html" %}
 {% block content %}
   <div class="jumbotron">
-    <h1>Welcome to supersecretproject</h1>
-    <p>Time to start building your site!</p>
-    <p><a class="btn btn-primary btn-lg" href="http://luminusweb.net">Learn more &raquo;</a></p>
+    <h1>Welcome to UW Textbook Exchange!</h1>
   </div>
 
   <div class="row">
     <div class="span12">
-    {{docs|markdown}}
+      <ul>
+        {% for item in listings %}
+        <li>
+          <p>{{item.author}}</p>
+          <p>{{item.title}}</p>
+          <p>{{item.sku}}</p>
+          <p>{{item.price}}</p>
+        </li>
+        {% endfor %}
+      </ul>
     </div>
+  </div>
+
+  <div class="row">
+      <div class="span12">
+          <form method="POST" action="/">
+                  {% csrf-field %}
+                  <p>
+                      Author:
+                      <input class="form-control"
+                             type="text"
+                             name="author"
+                             value="{{author}}" />
+                  </p>
+                  {% if errors.author%}
+                  <div class="alert alert-danger">{{errors.author|join}}</div>
+                  {% endif %}
+                  <p>
+                      Title:
+                      <input class="form-control"
+                             type="text"
+                             name="title"
+                             value="{{title}}" />
+                  </p>
+                  {% if errors.title%}
+                  <div class="alert alert-danger">{{errors.title|join}}</div>
+                  {% endif %}
+                  <p>
+                      Sku:
+                      <input class="form-control"
+                             type="text"
+                             name="sku"
+                             value="{{sku}}" />
+                  </p>
+                  {% if errors.sku%}
+                  <div class="alert alert-danger">{{errors.sku|join}}</div>
+                  {% endif %}
+                  <p>
+                      Price:
+                      <input class="form-control"
+                             type="number"
+                             name="price"
+                             value="{{price}}" />
+                  </p>
+                  {% if errors.price%}
+                  <div class="alert alert-danger">{{errors.price|join}}</div>
+                  {% endif %}
+                  <input type="submit" class="btn btn-primary" value="Create Listing" />
+          </form>
+      </div>
   </div>
 {% endblock %}
